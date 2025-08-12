@@ -1,0 +1,80 @@
+<div class="form-wrapper">
+  <form class="registration-form" [formGroup]="registerForm" (ngSubmit)="register()">
+    <fieldset>
+      <h2 class="form-title">Create an Account</h2>
+
+      <!-- Username -->
+      <div class="form-control with-icon">
+        <label for="username"><i class="fas fa-user"></i></label>
+        <input type="text" id="username" name="username" placeholder="Tino" formControlName="username" />
+      </div>
+      <ng-container *ngIf="registerForm.get('username')?.touched">
+        <p class="form-error" *ngIf="registerForm.get('username')?.errors?.['required']">Username is required!</p>
+        <p class="form-error" *ngIf="registerForm.get('username')?.errors?.['minlength']">Username must be at least 5
+          characters!</p>
+      </ng-container>
+
+      <!-- Email -->
+      <div class="form-control with-icon">
+        <label for="email"><i class="fas fa-envelope"></i></label>
+        <input type="email" id="email" name="email" placeholder="tinojs@gmail.com" formControlName="email" />
+      </div>
+      <ng-container *ngIf="registerForm.get('email')?.touched">
+        <p class="form-error" *ngIf="registerForm.get('email')?.errors?.['required']">Email is required!</p>
+        <p class="form-error" *ngIf="registerForm.get('email')?.errors?.['emailValidator']">Email is not valid!</p>
+      </ng-container>
+
+      <!-- Phone -->
+      <div class="form-control with-icon phone-group">
+        <label for="tel"><i class="fas fa-phone"></i></label>
+        <select id="country-code" class="phone-select">
+          <option value="+359">+359</option>
+          <option value="+44">+44</option>
+        </select>
+        <input type="text" id="tel" name="tel" placeholder="885 888 888" formControlName="tel" />
+      </div>
+
+      <!-- Password -->
+      <ng-container formGroupName="passGroup">
+        <!-- Password -->
+        <div class="form-control with-icon">
+          <label for="password"><i class="fas fa-lock"></i></label>
+          <input type="password" id="password" name="password" placeholder="******" formControlName="password" />
+        </div>
+        <ng-container>
+          <p class="form-error"
+            *ngIf="registerForm.get('passGroup.password')?.touched && registerForm.get('passGroup.password')?.errors?.['required']">
+            Password is required!
+          </p>
+          <p class="form-error"
+            *ngIf="registerForm.get('passGroup.password')?.touched && registerForm.get('passGroup.password')?.errors?.['minlength']">
+            Password must be at least 5 characters!
+          </p>
+        </ng-container>
+
+        <!-- Confirm Password -->
+        <div class="form-control with-icon">
+          <label for="rePassword"><i class="fas fa-lock"></i></label>
+          <input type="password" id="rePassword" name="rePassword" placeholder="******" formControlName="rePassword" />
+        </div>
+        <ng-container>
+          <p class="form-error"
+            *ngIf="registerForm.get('passGroup.rePassword')?.touched && registerForm.get('passGroup.rePassword')?.errors?.['required']">
+            Confirm Password is required!
+          </p>
+          <p class="form-error" *ngIf="registerForm.get('passGroup')?.errors?.['matchPasswordsValidator'] &&
+             registerForm.get('passGroup.rePassword')?.touched">
+            Passwords do not match!
+          </p>
+        </ng-container>
+      </ng-container>
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Register</button>
+
+      <p class="form-footer-text">
+        Already have an account?
+        <a href="/auth/login" class="form-link">Log In</a>
+      </p>
+    </fieldset>
+  </form>
+</div>

@@ -1,0 +1,135 @@
+/* Container styling */
+.profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f4f6f8;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile image */
+.profile-avatar {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #94c0f0;
+}
+
+/* Section heading */
+.profile-heading {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 2rem;
+}
+
+/* Info rows */
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #2c3e50;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+/* Labels in forms */
+.profile-row p:first-child {
+  font-weight: 600;
+}
+
+/* Input styling */
+.profile-input {
+  width: 100%;
+  padding: 0.3rem;
+  /* margin-top: 0.25rem; */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Phone input container */
+.phone-input-container {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.phone-select {
+  padding: 0.3rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+/* Error messages */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+/* Center and style the Edit button */
+.btn-edit {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #94c0f0;
+  color: #34495e;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #82b5ec;
+}
+
+/* Form action buttons */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Shared button styles */
+.btn-save,
+.btn-cancel {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Save button */
+.btn-save {
+  background-color: #94c0f0;
+  color: #34495e;
+}
+
+.btn-save:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Cancel button */
+.btn-cancel {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #c0392b;
+}

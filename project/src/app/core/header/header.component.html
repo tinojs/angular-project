@@ -1,0 +1,23 @@
+<header class="app-header">
+  <div class="logo">
+    <a routerLink="/">🏠 RentEasy</a>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/properties">Properties</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/contact">Contact</a>
+
+    <!-- Not logged in -->
+    <div class="auth-buttons" *ngIf="!isLoggedIn">
+      <a routerLink="/auth/login" class="btn login-btn">Login</a>
+      <a routerLink="/auth/register" class="btn register-btn">Register</a>
+    </div>
+
+    <!-- Logged in -->
+    <div class="user-buttons" *ngIf="isLoggedIn">
+      <a routerLink="/auth/profile" class="btn profile-btn">{{username}}'s Profile</a>
+      <button class="btn logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+</header>

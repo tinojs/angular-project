@@ -1,0 +1,85 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2c3e50;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #34495e;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+.auth-buttons,
+.user-buttons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.login-btn {
+  background-color: #94c0f0;
+}
+
+.login-btn:hover {
+  background-color: #cacaca;
+}
+
+.register-btn {
+  background-color: #a5f7b8;
+}
+
+.register-btn:hover {
+  background-color: #cacaca;
+}
+
+.profile-btn {
+  background-color: #17a2b8;
+}
+
+.profile-btn:hover {
+  background-color: #117a8b;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}

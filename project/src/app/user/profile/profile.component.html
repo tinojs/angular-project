@@ -1,0 +1,74 @@
+<div class="profile-container">
+    <img src="./../../../assets/profile.png" alt="default user" class="profile-avatar" />
+    <h3 class="profile-heading">{{profileData.username}}'s Info</h3>
+
+    <!-- Readonly Mode -->
+    <ng-container *ngIf="!showEditForm">
+        <div class="profile-row">
+            <p>Username:</p>
+            <p>{{ profileData.username }}</p>
+        </div>
+        <div class="profile-row">
+            <p>Email:</p>
+            <p>{{profileData.email}}</p>
+        </div>
+        <div class="profile-row">
+            <p>Phone:</p>
+            <p>{{profileData.tel}}</p>
+        </div>
+        <button class="btn-edit" (click)="onToggleEditForm()">Edit</button>
+    </ng-container>
+
+    <!-- Edit Mode -->
+    <ng-container *ngIf="showEditForm">
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+            <div class="profile-row">
+                <p>Username:</p>
+                <input type="text" class="profile-input" [value]="profileData.username" formControlName="username" />
+            </div>
+            <!-- Username validations -->
+            <ng-container *ngIf="profileForm.get('username')?.touched">
+                <p class="error-message" *ngIf="profileForm.get('username')?.errors?.['required']">
+                    Username is required!
+                </p>
+                <p class="error-message" *ngIf="profileForm.get('username')?.errors?.['minlength']">
+                    Username must have at least 5 characters!
+                </p>
+            </ng-container>
+
+            <div class="profile-row">
+                <p>Email:</p>
+                <input type="email" class="profile-input" [value]="profileData.email" formControlName="email" />
+            </div>
+
+            <!-- Email validations -->
+            <ng-container *ngIf="profileForm.get('email')?.touched">
+                <p class="error-message" *ngIf="profileForm.get('email')?.errors?.['required']">
+                    Email is required!
+                </p>
+                <p class="error-message" *ngIf="profileForm.get('email')?.errors?.['emailValidator']">
+                    Email is not valid!
+                </p>
+            </ng-container>
+
+            <div class="profile-row">
+                <p>Phone:</p>
+                <div class="phone-input-container">
+                    <select class="phone-select">
+                        <option value="00359">+359</option>
+                        <option value="0044">+44</option>
+                    </select>
+                    <input type="text" class="profile-input" [value]="profileData.tel" formControlName="tel" />
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-cancel" (click)="onCancelEdit($event)">Cancel</button>
+                <button class="btn-save" [disabled]="profileForm.invalid"
+                    [style]="{ backgroundColor: profileForm.invalid ? 'grey' : '#94c0f0' }">
+                    Save
+                </button>
+            </div>
+        </form>
+    </ng-container>
+</div>

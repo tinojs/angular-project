@@ -1,0 +1,37 @@
+<div class="login-container">
+    <form class="login-form" #form="ngForm" (ngSubmit)="login(form)">
+
+        <fieldset>
+            <h2>Login</h2>
+
+            <!-- Email -->
+            <div class="form-control with-icon">
+                <label for="email"><i class="fas fa-envelope"></i></label>
+                <input type="email" id="email" name="email" placeholder="john.doe@gmail.com" ngModel
+                    #inputEmail="ngModel" required [appEmail]="domains" />
+            </div>
+            <ng-container *ngIf="inputEmail.touched">
+                <p class="form-error" *ngIf="inputEmail.errors?.['required']">Email is required!</p>
+                <p class="form-error" *ngIf="inputEmail.errors?.['emailValidator']">Enter a valid email!</p>
+            </ng-container>
+
+            <!-- Password -->
+            <div class="form-control with-icon">
+                <label for="password"><i class="fas fa-lock"></i></label>
+                <input type="password" id="password" name="password" placeholder="******" ngModel
+                    #inputPassword="ngModel" required minlength="5" />
+            </div>
+            <ng-container *ngIf="inputPassword.touched">
+                <p class="form-error" *ngIf="inputPassword.errors?.['required']">Password is required!</p>
+                <p class="form-error" *ngIf="inputPassword.errors?.['minlength']">Password must be at least 5
+                    characters!</p>
+            </ng-container>
+            <button type="submit">Login</button>
+
+            <p class="text-center">
+                Don't have an account?
+                <a href="/auth/register">Register here</a>
+            </p>
+        </fieldset>
+    </form>
+</div>

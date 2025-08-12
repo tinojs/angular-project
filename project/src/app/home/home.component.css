@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f2f2f2;
+}
+
+.home-container {
+  height: 100vh;
+  background: linear-gradient(rgba(189, 179, 179, 0.4), rgba(156, 149, 149, 0.6)),
+    url('https://furaveri.com/wp-content/uploads/2022/04/OceanPoolVilla_Sunset_aerial_2.jpg')
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(156, 103, 103);
+  text-align: center;
+  padding: 2rem;
+}
+
+.home-content {
+  max-width: 700px;
+  background: rgba(108, 209, 209, 0.6);
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.home-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.home-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #312d2d;
+}
+
+.list-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #5b8caf;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.list-btn:hover {
+  background-color: #e5cbba;
+  transform: translateY(-2px);
+}
+
+

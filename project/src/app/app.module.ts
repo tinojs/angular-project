@@ -11,6 +11,7 @@ import { ErrorComponent } from './core/error/error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { appInterceptorProvider } from './app.interceptor';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { appInterceptorProvider } from './app.interceptor';
     ErrorComponent,
     NotFoundComponent,
     AuthenticateComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

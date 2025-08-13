@@ -1,0 +1,92 @@
+const { propertyModel, userModel } = require('../models');
+
+function getProperties(req, res, next) {
+  propertyModel.find()
+    .populate('creator', '-password')
+    .then(properties => res.json(properties))
+    .catch(next);
+}
+
+function getProperty(req, res, next) {
+  propertyModel.findById(req.params.propertyId)
+    .populate('creator', '-password')
+    .then(property => res.json(property))
+    .catch(next);
+}
+
+function createProperty(req, res, next) {
+  const { title, description, imageUrl, price, location, rooms, area } = req.body;
+  const { _id: creator } = req.user;
+
+  propertyModel.create({ title, description, imageUrl, price, location, rooms, area, creator })
+    .then(property => property.populate('creator', '-password'))
+    .then(populated => res.json(populated))
+    .catch(next);
+}
+
+function editProperty(req, res, next) {
+  const { propertyId } = req.params;
+  const { title, description, imageUrl, price, location, rooms, area } = req.body;
+  const { _id: userId } = req.user;
+
+  propertyModel.findOneAndUpdate(
+    { _id: propertyId, creator: userId },
+    { title, description, imageUrl, price, location, rooms, area },
+    { new: true }
+  )
+    .populate('creator', '-password')
+    .then(updated => {
+      if (updated) res.json(updated);
+      else res.status(401).json({ message: 'Unauthorized edit attempt' });
+    })
+    .catch(next);
+}
+
+function deleteProperty(req, res, next) {
+  const { propertyId } = req.params;
+  const { _id: userId } = req.user;
+
+  propertyModel.findOneAndDelete({ _id: propertyId, creator: userId })
+    .then(deleted => {
+      if (deleted) res.json(deleted);
+      else res.status(401).json({ message: 'Unauthorized delete attempt' });
+    })
+    .catch(next);
+}
+
+function getUserProperties(req, res, next) {
+  const { _id: userId } = req.user;
+
+  propertyModel.find({ creator: userId })
+    .populate('creator', '-password')
+    .then(properties => res.json(properties))
+    .catch(next);
+}
+
+function likeProperty(req, res, next) {
+  const { propertyId } = req.params;
+  const { _id: userId } = req.user;
+
+  propertyModel.findById(propertyId)
+    .then(property => {
+      if (!property) return res.status(404).json({ message: 'Property not found' });
+
+      const hasLiked = property.likes.includes(userId);
+      const update = hasLiked ? { $pull: { likes: userId } } : { $addToSet: { likes: userId } };
+
+      return propertyModel.findByIdAndUpdate(propertyId, update, { new: true })
+        .populate('creator', '-password');
+    })
+    .then(updated => res.json(updated))
+    .catch(next);
+}
+
+module.exports = {
+  getProperties,
+  getProperty,
+  createProperty,
+  editProperty,
+  deleteProperty,
+  getUserProperties,
+  likeProperty
+};

@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { appInterceptorProvider } from './app.interceptor';
 import { AboutComponent } from './about/about.component';
+import { PropertiesModule } from './properties/properties.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AboutComponent } from './about/about.component';
     CoreModule,
     SharedModule, 
     HttpClientModule,
+    PropertiesModule,
     AppRoutingModule
   ],
   providers: [appInterceptorProvider],

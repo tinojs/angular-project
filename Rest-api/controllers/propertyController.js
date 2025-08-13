@@ -1,10 +1,15 @@
 const { propertyModel, userModel } = require('../models');
-
 function getProperties(req, res, next) {
   propertyModel.find()
     .populate('creator', '-password')
-    .then(properties => res.json(properties))
-    .catch(next);
+    .then(properties => {
+      console.log('Properties fetched:', properties.length);
+      res.json(properties);
+    })
+    .catch(error => {
+      console.error('Error fetching properties:', error);  // ✅ log the real error
+      res.status(500).json({ message: 'Error fetching properties', error }); // Send it to frontend
+    });
 }
 
 function getProperty(req, res, next) {

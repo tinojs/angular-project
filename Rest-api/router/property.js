@@ -11,6 +11,5 @@ router.get('/:propertyId', propertyController.getProperty);
 router.post('/', auth(), propertyController.createProperty);
 router.put('/:propertyId', auth(), propertyController.editProperty);
 router.delete('/:propertyId', auth(), propertyController.deleteProperty);
-router.post('/:propertyId/like', auth(), propertyController.likeProperty);
 
 module.exports = router;

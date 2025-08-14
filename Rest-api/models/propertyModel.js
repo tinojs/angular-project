@@ -14,16 +14,11 @@ const propertySchema = new mongoose.Schema({
   },
   location: String,
   rooms: Number,
-  area: Number, 
+  area: Number,
   creator: {
     type: ObjectId,
     ref: 'User',
-  },
-  likes: [{
-    type: ObjectId,
-    ref: 'User',
-    default: []
-  }]
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Property', propertySchema);

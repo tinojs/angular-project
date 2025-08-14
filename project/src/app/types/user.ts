@@ -11,3 +11,10 @@ export interface ProfileData {
   email: string;
   tel: string;
 }
+
+export interface User {
+  _id: string;
+  username: string;
+  email: string;
+  tel: string;
+}

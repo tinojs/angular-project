@@ -68,23 +68,6 @@ function getUserProperties(req, res, next) {
     .catch(next);
 }
 
-function likeProperty(req, res, next) {
-  const { propertyId } = req.params;
-  const { _id: userId } = req.user;
-
-  propertyModel.findById(propertyId)
-    .then(property => {
-      if (!property) return res.status(404).json({ message: 'Property not found' });
-
-      const hasLiked = property.likes.includes(userId);
-      const update = hasLiked ? { $pull: { likes: userId } } : { $addToSet: { likes: userId } };
-
-      return propertyModel.findByIdAndUpdate(propertyId, update, { new: true })
-        .populate('creator', '-password');
-    })
-    .then(updated => res.json(updated))
-    .catch(next);
-}
 
 module.exports = {
   getProperties,
@@ -93,5 +76,4 @@ module.exports = {
   editProperty,
   deleteProperty,
   getUserProperties,
-  likeProperty
 };

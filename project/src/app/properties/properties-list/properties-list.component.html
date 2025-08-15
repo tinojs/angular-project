@@ -10,7 +10,7 @@
         <p class="location">{{ property.location }}</p>
         <p *ngIf="property.rooms">Rooms: {{ property.rooms }}</p>
         <p *ngIf="property.area">Area: {{ property.area }} m²</p>
-        <p class="creator">Listed by: {{ property.creator?.username || 'Unknown' }}</p>
+        <p class="creator">Listed by: {{ property.creator.username || 'Unknown' }}</p>
       </div>
     </div>
   </div>

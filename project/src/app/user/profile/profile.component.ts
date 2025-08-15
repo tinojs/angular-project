@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getProfile().subscribe({
       next: (user) => {
+        if (!user) return;
         this.profileData = {
           username: user.username,
           email: user.email,

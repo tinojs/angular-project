@@ -4,49 +4,48 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Injectable, Provider } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ErrorService } from './core/error/error.service';
-import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 
 const { apiUrl } = environment;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  API = '/api';
+  private readonly API_PREFIX = '/api';
 
-  constructor(private errorService: ErrorService, private router: Router) {}
+  constructor(private errorService: ErrorService) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    if (req.url.startsWith(this.API)) {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // Rewrite API URL and ensure credentials are sent
+    if (req.url.startsWith(this.API_PREFIX)) {
       req = req.clone({
-        url: req.url.replace(this.API, apiUrl),
+        url: req.url.replace(this.API_PREFIX, apiUrl),
         withCredentials: true,
       });
     }
 
     return next.handle(req).pipe(
-      catchError((err) => {
+      catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
-          this.router.navigate(['/auth/login']);
+          // Let components/guards decide how to handle unauthorized responses
+          console.warn('Unauthorized request intercepted:', err.message);
         } else {
+          // Forward other errors to a global error service
           this.errorService.setError(err);
-          this.router.navigate(['/error']);
         }
 
-        return throwError(() => err); 
+        return throwError(() => err);
       })
     );
   }
 }
 
 export const appInterceptorProvider: Provider = {
+  provide: HTTP_INTERCEPTORS,
   useClass: AppInterceptor,
   multi: true,
-  provide: HTTP_INTERCEPTORS,
 };

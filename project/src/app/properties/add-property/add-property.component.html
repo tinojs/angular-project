@@ -1,0 +1,34 @@
+<form #form="ngForm" (ngSubmit)="addProperty(form)">
+  <h2>List your property now!</h2>
+
+  <label for="title">Title:</label><br />
+  <input type="text" id="title" name="title" #inputTitle="ngModel" ngModel required minlength="5" />
+  <ng-container *ngIf="inputTitle.touched">
+    <p class="error" *ngIf="inputTitle?.errors?.['required']">
+      Property title name is required.
+    </p>
+    <p class="error" *ngIf="inputTitle?.errors?.['minlength']">
+      Property title must be at least 5 characters long.
+    </p>
+  </ng-container>
+  <br /><br />
+  <label for="description">Description:</label><br />
+  <textarea id="description" name="description"></textarea><br /><br />
+
+  <label for="imageUrl">Image URL:</label><br />
+  <input type="url" id="imageUrl" name="imageUrl" /><br /><br />
+
+  <label for="price">Price:</label><br />
+  <input type="number" id="price" name="price" min="0" required /><br /><br />
+
+  <label for="location">Location:</label><br />
+  <input type="text" id="location" name="location" /><br /><br />
+
+  <label for="rooms">Rooms:</label><br />
+  <input type="number" id="rooms" name="rooms" min="0" /><br /><br />
+
+  <label for="area">Area (m²):</label><br />
+  <input type="number" id="area" name="area" min="0" /><br /><br />
+
+  <button type="submit">Add Property</button>
+</form>

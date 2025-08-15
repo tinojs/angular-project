@@ -22,6 +22,7 @@ import { PropertiesModule } from './properties/properties.module';
     NotFoundComponent,
     AuthenticateComponent,
     AboutComponent,
+    
   ],
   imports: [
     BrowserModule,

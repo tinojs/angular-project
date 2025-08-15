@@ -14,3 +14,8 @@ export interface Property {
   updatedAt: string;
   __v?: number;
 }
+
+export type CreatePropertyDto = Omit<
+  Property,
+  '_id' | 'creator' | 'createdAt' | 'updatedAt' | '__v'
+>;

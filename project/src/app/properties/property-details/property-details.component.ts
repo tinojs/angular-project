@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Property } from 'src/app/types/property';
 import { UserService } from 'src/app/user/user.service';
@@ -17,7 +17,8 @@ export class PropertyDetailsComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private activeRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,8 +43,22 @@ export class PropertyDetailsComponent implements OnInit {
     // You can navigate to an edit page here
   }
 
-  onDelete(): void {
-    console.log('Delete property:', this.property._id);
-    // You can call the API to delete the property here
-  }
+  onDelete() {
+  if (!this.property?._id) return;
+
+  const confirmed = confirm('Are you sure you want to delete this property?');
+  if (!confirmed) return;
+
+  this.apiService.deleteProperty(this.property._id).subscribe({
+    next: () => {
+      // Navigate back to properties list or another appropriate page
+      this.router.navigate(['/properties']);
+    },
+    error: (err) => {
+      console.error('Failed to delete property:', err);
+      // Optionally display a user-friendly error message
+    },
+  });
+}
+
 }

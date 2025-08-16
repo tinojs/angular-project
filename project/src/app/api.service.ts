@@ -27,4 +27,10 @@ export class ApiService {
 
     return this.http.get<Property>(`${apiUrl}/properties/${id}`);
   }
+
+  deleteProperty(id: string) {
+    const { apiUrl } = environment;
+
+    return this.http.delete(`${apiUrl}/properties/${id}`, {withCredentials: true});
+  }
 }

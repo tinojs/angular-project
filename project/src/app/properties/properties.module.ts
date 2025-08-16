@@ -4,9 +4,10 @@ import { PropertiesListComponent } from './properties-list/properties-list.compo
 import { PropertyRoutingModule } from './property-routing.module';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PropertyDetailsComponent } from './property-details/property-details.component';
 
 @NgModule({
-  declarations: [PropertiesListComponent, AddPropertyComponent],
+  declarations: [PropertiesListComponent, AddPropertyComponent, PropertyDetailsComponent],
   imports: [
     CommonModule,
     PropertyRoutingModule,

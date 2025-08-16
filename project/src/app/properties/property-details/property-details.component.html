@@ -1,0 +1,28 @@
+<div class="property-details-container" *ngIf="property">
+  <h2 class="title">{{ property.title }}</h2>
+
+  <img class="property-image" [src]="property.imageUrl" alt="Property Image" />
+
+  <div class="details-grid">
+    <p><strong>Price:</strong> ${{ property.price }}</p>
+    <p><strong>Location:</strong> {{ property.location || 'Not specified' }}</p>
+    <p *ngIf="property.rooms"><strong>Rooms:</strong> {{ property.rooms }}</p>
+    <p *ngIf="property.area"><strong>Area:</strong> {{ property.area }} m²</p>
+    <p *ngIf="property.description"><strong>Description:</strong><br />{{ property.description }}</p>
+    <p><strong>Listed by:</strong> {{ property.creator?.username }}</p>
+    <p><strong>Listed on:</strong> {{ property.createdAt | date:'medium' }}</p>
+  </div>
+ <div class="button-group">
+    <ng-container *ngIf="isOwner(); else notOwner">
+      <button class="edit-button" (click)="onEdit()">Edit</button>
+      <button class="delete-button" (click)="onDelete()">Delete</button>
+    </ng-container>
+    <ng-template #notOwner>
+      <a class="book-button" href="https://www.booking.com" target="_blank">Book now</a>
+    </ng-template>
+  </div>
+</div>
+
+<div *ngIf="!property">
+  <p>Loading property details...</p>
+</div>

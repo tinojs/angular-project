@@ -3,7 +3,7 @@ export interface UserForAuthentication {
   email: string;
   password: string;
   tel: string;
-  id: string;
+  _id: string;
 }
 
 export interface ProfileData {

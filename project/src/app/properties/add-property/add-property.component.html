@@ -13,22 +13,28 @@
   </ng-container>
   <br /><br />
   <label for="description">Description:</label><br />
-  <textarea id="description" name="description"></textarea><br /><br />
+  <textarea id="description" name="description" ngModel></textarea><br /><br />
 
   <label for="imageUrl">Image URL:</label><br />
-  <input type="url" id="imageUrl" name="imageUrl" /><br /><br />
+  <input type="url" id="imageUrl" name="imageUrl" ngModel /><br /><br />
 
   <label for="price">Price:</label><br />
-  <input type="number" id="price" name="price" min="0" required /><br /><br />
+  <input type="number" id="price" name="price" min="0" #inputPrice="ngModel" ngModel required />
+  <ng-container *ngIf="inputPrice.touched">
+    <p class="error" *ngIf="inputPrice?.errors?.['required']">
+      Property price is required.
+    </p>
+  </ng-container>
+  <br /><br />
 
   <label for="location">Location:</label><br />
-  <input type="text" id="location" name="location" /><br /><br />
+  <input type="text" id="location" name="location" ngModel /><br /><br />
 
   <label for="rooms">Rooms:</label><br />
-  <input type="number" id="rooms" name="rooms" min="0" /><br /><br />
+  <input type="number" id="rooms" name="rooms" min="0" ngModel /><br /><br />
 
   <label for="area">Area (m²):</label><br />
-  <input type="number" id="area" name="area" min="0" /><br /><br />
+  <input type="number" id="area" name="area" min="0" ngModel /><br /><br />
 
   <button type="submit">Add Property</button>
 </form>

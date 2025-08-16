@@ -19,6 +19,12 @@ export class ApiService {
   addProperty(property: CreatePropertyDto): Observable<Property> {
     const { apiUrl } = environment;
 
-    return this.http.post<Property>(`${apiUrl}/properties`, property);
+    return this.http.post<Property>(`${apiUrl}/properties`, property, {withCredentials: true});
+  }
+
+  getPropertyById(id: string) {
+    const { apiUrl } = environment;
+
+    return this.http.get<Property>(`${apiUrl}/properties/${id}`);
   }
 }

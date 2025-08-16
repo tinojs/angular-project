@@ -19,7 +19,7 @@ export class PropertiesListComponent implements OnInit {
   }
   
   get userId(): string | undefined {
-    return this.userService.user?.id || '';
+    return this.userService.user?._id || '';
   }
 
   ngOnInit(): void {

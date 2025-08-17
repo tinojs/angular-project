@@ -4,11 +4,13 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './core/error/error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutComponent } from './about/about.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent},
+  { path: 'contacts', component: ContactsComponent},
   {
     path: 'auth',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),

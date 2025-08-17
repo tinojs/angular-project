@@ -4,6 +4,7 @@ import { PropertiesListComponent } from './properties-list/properties-list.compo
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { AuthActivate } from '../guards/auth.activate';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
+import { PropertyEditComponent } from './property-edit/property-edit.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: 'properties/:id',
     component: PropertyDetailsComponent,
+  },
+  {
+    path: 'properties/:id/edit',
+    component: PropertyEditComponent,
+    canActivate: [AuthActivate],
   },
 ];
 

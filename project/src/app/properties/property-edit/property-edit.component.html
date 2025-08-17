@@ -1,0 +1,47 @@
+<form #form="ngForm" (ngSubmit)="onEdit(form)" *ngIf="property">
+    <h2>Edit your property</h2>
+
+    <label for="title">Title:</label><br />
+    <input type="text" id="title" name="title" #inputTitle="ngModel" ngModel required minlength="5"
+        [ngModel]="property.title" />
+
+    <ng-container *ngIf="inputTitle.touched">
+        <p class="error" *ngIf="inputTitle?.errors?.['required']">
+            Property title name is required.
+        </p>
+        <p class="error" *ngIf="inputTitle?.errors?.['minlength']">
+            Property title must be at least 5 characters long.
+        </p>
+    </ng-container><br /><br />
+
+    <label for="description">Description:</label><br />
+    <textarea id="description" name="description" ngModel [ngModel]="property.description"></textarea><br /><br />
+
+    <label for="imageUrl">Image URL:</label><br />
+    <input type="url" id="imageUrl" name="imageUrl" ngModel [ngModel]="property.imageUrl" /><br /><br />
+
+    <label for="price">Price:</label><br />
+    <input type="number" id="price" name="price" min="0" #inputPrice="ngModel" ngModel required
+        [ngModel]="property.price" />
+
+    <ng-container *ngIf="inputPrice.touched">
+        <p class="error" *ngIf="inputPrice?.errors?.['required']">
+            Property price is required.
+        </p>
+    </ng-container><br /><br />
+
+    <label for="location">Location:</label><br />
+    <input type="text" id="location" name="location" ngModel [ngModel]="property.location" /><br /><br />
+
+    <label for="rooms">Rooms:</label><br />
+    <input type="number" id="rooms" name="rooms" min="0" ngModel [ngModel]="property.rooms" /><br /><br />
+
+    <label for="area">Area (m²):</label><br />
+    <input type="number" id="area" name="area" min="0" ngModel [ngModel]="property.area" /><br /><br />
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<div *ngIf="!property">
+    <p>Loading property for editing...</p>
+</div>

@@ -13,6 +13,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { appInterceptorProvider } from './app.interceptor';
 import { AboutComponent } from './about/about.component';
 import { PropertiesModule } from './properties/properties.module';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PropertiesModule } from './properties/properties.module';
     NotFoundComponent,
     AuthenticateComponent,
     AboutComponent,
+    ContactsComponent,
     
   ],
   imports: [

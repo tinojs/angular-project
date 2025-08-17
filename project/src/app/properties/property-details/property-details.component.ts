@@ -39,8 +39,7 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   onEdit(): void {
-    console.log('Edit property:', this.property._id);
-    // You can navigate to an edit page here
+    this.router.navigate(['/properties', this.property._id, 'edit']);
   }
 
   onDelete() {
@@ -51,12 +50,10 @@ export class PropertyDetailsComponent implements OnInit {
 
   this.apiService.deleteProperty(this.property._id).subscribe({
     next: () => {
-      // Navigate back to properties list or another appropriate page
       this.router.navigate(['/properties']);
     },
     error: (err) => {
       console.error('Failed to delete property:', err);
-      // Optionally display a user-friendly error message
     },
   });
 }

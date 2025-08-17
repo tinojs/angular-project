@@ -1,9 +1,30 @@
 <section class="home-container">
-    <div class="home-content">
-      <h1>List Your Property Today</h1>
-      <p>Reach thousands of potential buyers and renters in just a few clicks. It's fast, easy, and secure.</p>
-      <button class="list-btn" routerLink="/add-property">
-        List Your Property
-      </button>
-    </div>
-  </section>
+  <div class="home-content">
+    <h1>List Your Property Today</h1>
+    <p>Reach thousands of potential and renters in just a few clicks. It's fast, easy, and secure.</p>
+    <button class="list-btn" routerLink="/add-property">
+      List Your Property
+    </button>
+  </div>
+
+  <p class="latest-listings-title">Our Latest Listings</p>
+
+<div class="latest-listings-ticker" *ngIf="latestProperties.length">
+  <div class="ticker-track">
+    
+    <a
+      class="ticker-item"
+      *ngFor="let property of latestProperties"
+      [routerLink]="['/properties', property._id]"
+      tabindex="0"
+    >
+      <img
+        [src]="property.imageUrl || 'https://via.placeholder.com/200x120'"
+        alt="{{ property.title }}"
+      />
+      <p>{{ property.title }}</p>
+    </a>
+  </div>
+</div>
+
+</section>

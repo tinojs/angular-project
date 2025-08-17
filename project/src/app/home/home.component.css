@@ -1,25 +1,16 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f2f2f2;
-}
-
 .home-container {
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(rgba(189, 179, 179, 0.4), rgba(156, 149, 149, 0.6)),
     url('https://furaveri.com/wp-content/uploads/2022/04/OceanPoolVilla_Sunset_aerial_2.jpg')
     center/cover no-repeat;
   display: flex;
+  flex-direction: column;   /* stack vertically */
   align-items: center;
   justify-content: center;
   color: rgb(156, 103, 103);
   text-align: center;
   padding: 2rem;
+  gap: 2rem;                /* spacing between content and ticker */
 }
 
 .home-content {
@@ -57,4 +48,72 @@ body {
   transform: translateY(-2px);
 }
 
+/* New title for ticker */
+.latest-listings-title {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 3rem;
+  color: #e47263;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+}
 
+.latest-listings-ticker {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 180px; /* adjust height to fit items */
+}
+
+.ticker-track {
+  display: flex;
+  animation: scroll-full-left 25s linear infinite;
+  width: max-content;
+}
+
+.latest-listings-ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2rem;
+  text-align: center;
+  min-width: 220px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.ticker-item img {
+  width: 220px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.5rem;
+}
+
+.ticker-item p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.ticker-item:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scroll-full-left {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

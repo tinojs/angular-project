@@ -31,7 +31,7 @@ export class PropertyEditComponent implements OnInit {
     const updatedProperty: CreatePropertyDto = form.value;
 
     this.apiService.editProperty(this.property._id, updatedProperty).subscribe(() => {
-      this.router.navigate(['/properties', this.property!._id]);
+      this.router.navigate(['/properties']);
     });
   }
 }

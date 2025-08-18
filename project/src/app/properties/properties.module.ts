@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PropertiesListComponent } from './properties-list/properties-list.component';
 import { PropertyRoutingModule } from './property-routing.module';
 import { AddPropertyComponent } from './add-property/add-property.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
 import { PropertyEditComponent } from './property-edit/property-edit.component';
 
